@@ -1,0 +1,44 @@
+version: '3.5'
+      
+volumes:
+  db:
+
+networks:
+  backend:
+    name: "origin_backend"
+    driver: "bridge"
+
+services:
+  db:
+    image: mysql:5.7
+    platform: linux/amd64
+    hostname: mysql
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+      MYSQL_USER: user
+      MYSQL_PASSWORD: abc123
+    ports:
+      - '3307:3306'
+    volumes:
+      - 'db:/var/lib/mysql'
+    networks: 
+      - backend
+
+  api:
+    depends_on:
+      - 'db'
+    build: .
+    container_name: origin_api
+    hostname: origin_api
+    restart: always
+    command: /bin/bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
+    volumes:
+      - '.:/app'
+    ports:
+      - "3000:3000"
+    env_file:
+      - '.env'
+    networks: 
+      - backend
