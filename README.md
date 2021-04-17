@@ -1,7 +1,7 @@
 # origin-api
 
 ### Description
-Api to determines the user’s risk profile using the data provided and then suggests an insurance plan ("economic", "regular", "responsible") corresponding to her risk profile.
+Api to determines the user’s risk profile using the data provided and then suggests an insurance plan `("economic", "regular", "responsible")` corresponding to her risk profile.
 
 This api runs on docker with MYSQL and Ruby on Rails.
 
@@ -9,14 +9,14 @@ This api runs on docker with MYSQL and Ruby on Rails.
 ### Model description
 
 The project has 4 tables:
-personal_informations, risk_questions, vehicles, houses
+`personal_informations, risk_questions, vehicles, houses`
 
 The personal_informations table has many vehicles, houses and one risk_questions with 3 questions.
 
 With this information we can run the risk algorithm and suggests an insurance plan.
 
 ### Important folders
-
+```
 app 
 * controllers
 * models
@@ -36,6 +36,7 @@ coverage
 config
 * routes.rb
 * database.yml
+```
 
 ### Executing the project:
 
