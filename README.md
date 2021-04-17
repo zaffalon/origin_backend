@@ -39,7 +39,7 @@ config
 
 ### Executing the project:
 
-Run the run_origin script
+Run the `run_origin.sh` script
 ```
 $ sh run_origin.sh
 ```
@@ -76,8 +76,7 @@ Executing tests
 $ docker-compose run -e RAILS_ENV=test api rspec
 ```
 
-The service will run on port 3000.
-
+The service will run on `port 3000` and you can see the coverage page in `coverage/index.html`
 
 To see the logs you can attach
 ```
