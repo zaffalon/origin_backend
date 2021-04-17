@@ -42,7 +42,7 @@ config
 
 Run the `run_origin.sh` script
 ```
-$ sh run_origin.sh
+$ ./run_origin.sh
 ```
 
 Or do the manual steps
