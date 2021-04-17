@@ -39,7 +39,7 @@ config
 
 ### Executing the project:
 
-Run the run app script
+Run the run_origin script
 ```
 $ sh run_origin.sh
 ```
@@ -54,11 +54,6 @@ $ docker-compose build
 Start running the containers
 ```
 $ docker-compose up -d
-```
-
-Install ruby gems
-```
-$ docker-compose run api bundle install
 ```
 
 Create the database
@@ -83,9 +78,10 @@ $ docker-compose run -e RAILS_ENV=test api rspec
 
 The service will run on port 3000.
 
-To see the logs you can atach
+
+To see the logs you can attach
 ```
-$ docker-compose atach origin_api
+$ docker attach origin_api 
 ```
 
 You can stop the docker running
