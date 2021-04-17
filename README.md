@@ -1,24 +1,142 @@
-# README
+# origin-api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Description
+Api to determines the user’s risk profile using the data provided and then suggests an insurance plan ("economic", "regular", "responsible") corresponding to her risk profile.
 
-Things you may want to cover:
+This api runs on docker with MYSQL and Ruby on Rails.
 
-* Ruby version
 
-* System dependencies
+### Model description
 
-* Configuration
+The project has 4 tables:
+personal_informations, risk_questions, vehicles, houses
 
-* Database creation
+The personal_informations table has many vehicles, houses and one risk_questions with 3 questions.
 
-* Database initialization
+With this information we can run the risk algorithm and suggests an insurance plan.
 
-* How to run the test suite
+### Important folders
 
-* Services (job queues, cache servers, search engines, etc.)
+app 
+* controllers
+* models
+* services
 
-* Deployment instructions
+db 
+* migrate
+* schema
 
-* ...
+spec 
+* api
+* services
+
+coverage
+* index.html -> we can see the coverage from the test
+
+config
+* routes.rb
+* database.yml
+
+### Executing the project:
+
+Run the run app script
+```
+$ sh run_origin.sh
+```
+
+Or do the manual steps
+
+Build the container images
+```
+$ docker-compose build
+```
+
+Start running the containers
+```
+$ docker-compose up -d
+```
+
+Install ruby gems
+```
+$ docker-compose run api bundle install
+```
+
+Create the database
+```
+$ docker-compose run api rake db:create
+```
+
+Execute database migration
+```
+$ docker-compose run api rake db:migrate
+```
+
+Migrate database for test env
+```
+$ docker-compose run api rake db:migrate RAILS_ENV=test
+```
+
+Executing tests
+```
+$ docker-compose run -e RAILS_ENV=test api rspec
+```
+
+The service will run on port 3000.
+
+To see the logs you can atach
+```
+$ docker-compose atach origin_api
+```
+
+You can stop the docker running
+```
+$ docker-compose stop
+```
+
+
+### Create risk profile:
+
+#### Route: /personal_informations
+
+Method: POST
+
+Parameters:
+
+```
+{
+  "age": 35,
+  "dependents": 2,
+  "house": {"ownership_status": "owned"},
+  "income": 0,
+  "marital_status": "married",
+  "risk_questions": [0, 1, 0],
+  "vehicle": {"year": 2018}
+}
+```
+
+Success return example:
+
+```
+{
+    "auto": "regular",
+    "disability": "ineligible",
+    "home": "economic",
+    "life": "regular"
+}
+```
+
+You can run the CURL to see the same result
+```
+curl -X POST \
+  http://localhost:3000/personal_informations \
+  -H 'content-type: application/json' \
+  -d '{
+  "age": 35,
+  "dependents": 2,
+  "house": {"ownership_status": "owned"},
+  "income": 0,
+  "marital_status": "married",
+  "risk_questions": [0, 1, 0],
+  "vehicle": {"year": 2018}
+}'
+```
