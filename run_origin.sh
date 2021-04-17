@@ -1,5 +1,7 @@
 docker-compose build && \
 docker-compose up -d && \
+echo "Sleep for 15 seconds to containers finish to deploy" && \
+sleep 15 && \
 docker-compose run api rake db:create && \
 docker-compose run api rake db:migrate && \
 docker-compose run api rake db:seed && \

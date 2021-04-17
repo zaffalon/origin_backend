@@ -26,9 +26,6 @@ ActiveRecord::Schema.define(version: 2021_04_16_215521) do
     t.integer "dependents"
     t.integer "income"
     t.string "marital_status"
-    t.integer "risk_questions"
-    t.string "vehicle_id", collation: "utf8_bin"
-    t.string "house_id", collation: "utf8_bin"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
