@@ -11,6 +11,9 @@ RSpec.describe "PersonalInformationController", type: :request do
             # ActiveRecord::Base.logger = Logger.new(STDOUT) if defined?(ActiveRecord::Base)
 
             assert PersonalInformation.delete_all
+            assert House.delete_all
+            assert Vehicle.delete_all
+            assert RiskQuestion.delete_all
         end
 
         it 'should return a risk score' do

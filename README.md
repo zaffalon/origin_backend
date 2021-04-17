@@ -11,7 +11,9 @@ This api runs on docker with MYSQL and Ruby on Rails.
 The project has 4 tables:
 `personal_informations, risk_questions, vehicles, houses`
 
-The personal_informations table has many vehicles, houses and one risk_questions with 3 questions.
+The personal_informations table has many vehicles, houses and one risk_questions with 3 questions, but because of the request provided we just calculate the risk and save one house and vehicle per request.
+
+I created a risk_questions with tree colunm to save the response. This way, I can save the response in the DB without be a JSON string.
 
 With this information we can run the risk algorithm and suggests an insurance plan.
 
