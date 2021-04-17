@@ -77,7 +77,7 @@ Executing tests
 $ docker-compose run -e RAILS_ENV=test api rspec
 ```
 
-The service will run on `port 3000` and you can see the coverage page in `coverage/index.html`
+The service will run on `port 3000` and you can see the test coverage page in `coverage/index.html`
 
 To see the logs you can attach
 ```
