@@ -63,7 +63,7 @@ RSpec.describe "RiskScoreService", type: :model do
             }.to_json)
         end
 
-        it 'should return a risk score with all ineligible' do
+        it 'should return a risk score with all economic' do
             personal_information = PersonalInformation.create(
                 age: 25,
                 dependents: 2,
